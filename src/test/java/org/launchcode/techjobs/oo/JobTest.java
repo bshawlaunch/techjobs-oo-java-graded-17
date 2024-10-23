@@ -38,4 +38,54 @@ public class JobTest {
         assertNotEquals(jobTest4, jobTest5);
     }
 
+
+    @Test
+    public void testToStringStartsAndEndsWithNewLine() {
+        Job jobTest6 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String expectedOutput = String.format(
+                System.lineSeparator() +
+                        "ID: " + jobTest6.getId() + "\n" +
+                        "Name: Product tester\n" +
+                        "Employer: ACME\n" +
+                        "Location: Desert\n" +
+                        "Position Type: Quality control\n" +
+                        "Core Competency: Persistence" +
+                        System.lineSeparator()
+        );
+
+        assertEquals(expectedOutput, jobTest6.toString());
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+        Job jobTest7 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String expectedOutput = String.format(
+                System.lineSeparator() +
+                        "ID: " + jobTest7.getId() + "\n" +
+                        "Name: " + jobTest7.getName() + "\n" +
+                        "Employer: "+ jobTest7.getEmployer() + "\n" +
+                        "Location: " + jobTest7.getLocation() + "\n" +
+                        "Position Type: " + jobTest7.getPositionType() + "\n" +
+                        "Core Competency: " + jobTest7.getCoreCompetency() +
+                        System.lineSeparator()
+        );
+        assertEquals(expectedOutput, jobTest7.toString());
+    }
+
+    @Test
+    public void testToStringHandlesEmptyField() {
+        Job jobTest8 = new Job("", new Employer(""), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String expectedOutput = String.format(
+                System.lineSeparator() +
+                        "ID: " + jobTest8.getId() + "\n" +
+                        "Name: " + "Data not available" + "\n" +
+                        "Employer: "+ "Data not available" + "\n" +
+                        "Location: " + jobTest8.getLocation() + "\n" +
+                        "Position Type: " + jobTest8.getPositionType() + "\n" +
+                        "Core Competency: " + jobTest8.getCoreCompetency() +
+                        System.lineSeparator()
+        );
+        assertEquals(expectedOutput, jobTest8.toString());
+    }
+
 }
